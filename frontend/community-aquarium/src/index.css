@@ -1,1 +1,23 @@
+@font-face {
+    font-family: Pop;
+    src: url("../src/assets/fonts/和風ぽっぷ.ttf");
+}
+
+@font-face {
+    font-family: Elmer;
+    src: url("../src/assets/fonts/Elmer.ttf");
+}
+
+@font-face {
+    font-family: ElmerP;
+    src: url("../src/assets/fonts/ElmerP.ttf");
+}
+
 @import "tailwindcss";
+@plugin 'tailwind-scrollbar';
+
+@theme {
+    --font-pop: Pop, "sans-serif";
+    --font-elmer: Elmer, "sans-serif";
+    --font-elmerp: ElmerP, "sans-serif";
+}

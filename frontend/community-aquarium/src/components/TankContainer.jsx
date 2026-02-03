@@ -4,9 +4,11 @@ const TankContainer = () => {
     const canvasRef = useRef();
 
     useEffect(() => {
+        const canvas = canvasRef.current;
+
         const resizeCanvas = () => {
-            canvasRef.width = window.innerWidth;
-            canvasRef.height = window.innerHeight;
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
         resizeCanvas();
 
