@@ -2,6 +2,7 @@ import TankContainer from './components/TankContainer'
 import TopBar from './components/hud/TopBar'
 import BottomBar from './components/hud/BottomBar'
 import ShopModal from './components/modals/ShopModal';
+import BookModal from './components/modals/BookModal';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
         <TopBar />
         <BottomBar />
       </div>
-      <ShopModal />
+      <BookModal />
     </div>
   )
 }
