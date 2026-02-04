@@ -4,7 +4,7 @@ import ShopGridItem from "./grid/ShopGridItem";
 
 const ShopModal = props => {
     return (
-        <Modal title="Shop">
+        <Modal title="Shop" onClose={props.onClose}>
             <div className="flex gap-3 justify-center mb-4">
                 <Pill className="bg-blue-400">Fish</Pill>
                 <Pill className="bg-orange-400">Decor</Pill>
