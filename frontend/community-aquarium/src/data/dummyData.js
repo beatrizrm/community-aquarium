@@ -1,0 +1,65 @@
+export const DUMMY_FISH = [
+    {
+        id: '1',
+        name: 'Lil\' Fish',
+        species: 'Guppy',
+        owner: 'u1',
+        age: 88, /* replace with birthdate later */
+    },
+    {
+        id: '2',
+        name: 'McFish',
+        species: 'Guppy',
+        owner: 'u2',
+        age: 63,
+    },
+    {
+        id: '3',
+        name: 'Filet-O-Fish',
+        species: 'Tetra',
+        owner: 'u3',
+        age: 5,
+    },
+    {
+        id: '4',
+        name: 'Fishy',
+        species: 'Tetra',
+        owner: 'u4',
+        age: 63,
+    },
+    {
+        id: '5',
+        name: 'Fisher Price',
+        species: 'Angelfish',
+        owner: 'u5',
+        age: 37,
+    },
+    {
+        id: '6',
+        name: 'Not A Fish',
+        species: 'Angelfish',
+        owner: 'u2',
+        age: 89,
+    },
+    {
+        id: '7',
+        name: 'Fish',
+        species: 'Betta',
+        owner: 'u3',
+        age: 22,
+    },
+    {
+        id: '8',
+        name: 'Fisherman',
+        species: 'Betta',
+        owner: 'u4',
+        age: 6,
+    },
+    {
+        id: '9',
+        name: 'DaFish',
+        species: 'Betta',
+        owner: 'u8',
+        age: 90,
+    },
+];

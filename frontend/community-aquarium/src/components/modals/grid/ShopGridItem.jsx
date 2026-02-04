@@ -1,13 +1,13 @@
-import GridItem from "../../../ui/GridItem";
+import ClickableGridItem from "../../../ui/ClickableGridItem";
 
 const ShopGridItem = props => {
     return (
-        <GridItem>
+        <ClickableGridItem>
             <div className="flex justify-between items-center text-md">
                 <span>{props.name}</span>
                 <span>🟡{props.price}</span>
             </div>
-        </GridItem>
+        </ClickableGridItem>
     )
 };
 
