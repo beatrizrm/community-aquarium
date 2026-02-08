@@ -1,4 +1,4 @@
-export const DUMMY_FISH = [
+export const OWNED_FISH_DATA = [
     {
         id: '1',
         name: 'Lil\' Fish',

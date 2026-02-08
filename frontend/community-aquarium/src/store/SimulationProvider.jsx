@@ -1,13 +1,13 @@
-import GameContext from "./game-context";
+import SimulationContext from "./simulation-context";
 import { useState, useEffect } from "react";
-import { DUMMY_FISH } from '../data/dummyData';
+import { OWNED_FISH_DATA } from '../data/fishData';
 
-const GameProvider = props => {
+const SimulationProvider = props => {
     const [ownedFish, setOwnedFish] = useState([]);
 
     useEffect(() => {
-        setOwnedFish(DUMMY_FISH);
-    });
+        setOwnedFish(OWNED_FISH_DATA);
+    }, []);
 
     const buyFishHandler = fish => {
         setOwnedFish(prevFish =>
@@ -21,17 +21,17 @@ const GameProvider = props => {
         );
     }
 
-    const gameContext = {
+    const simulationContext = {
         ownedFish: ownedFish,
         buyFish: buyFishHandler,
         sellFish: sellFishHandler
     }
 
     return (
-        <GameContext.Provider value={gameContext}>
+        <SimulationContext.Provider value={simulationContext}>
             {props.children}
-        </GameContext.Provider>
+        </SimulationContext.Provider>
     );
 };
 
-export default GameProvider;
+export default SimulationProvider;

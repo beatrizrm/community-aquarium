@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import Modal from "../../ui/Modal";
 import BookGridItem from "./grid/BookGridItem";
-import GameContext from "../../store/game-context";
+import SimulationContext from "../../store/simulation-context";
 import FishInfoPanel from "./FishInfoPanel";
 
 const BookModal = props => {
-    const tankCtx = useContext(GameContext);
+    const tankCtx = useContext(SimulationContext);
 
     const [selectedFish, setSelectedFish] = useState(null);
     
