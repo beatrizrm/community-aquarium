@@ -1,4 +1,3 @@
-// src/game/TankEngine.js
 import { Fish } from "./Fish";
 import { SPECIES_DATA } from "../data/speciesData";
 import { OWNED_FISH_DATA } from "../data/fishData";
@@ -14,28 +13,39 @@ export class Tank {
         this.loop = this.loop.bind(this);   // Needed for weird js 'this' handling (so it can memorize that this = tank for this.fishObjs)
     }
 
-    loadImages() {
+    async loadImages() {    // returns a promise
+        const promises = [];
+
         for (const speciesName in SPECIES_DATA) {
             const fishImg = new Image();
             fishImg.src = SPECIES_DATA[speciesName].sprite;
             this.loadedImages[speciesName] = fishImg;
+
+            promises.push(new Promise(resolve => fishImg.addEventListener("load", resolve)));
         }
+
+        await Promise.all(promises);    // to determine fish dimensions
     }
 
     initFish() {
         for (const fishData of OWNED_FISH_DATA) {
-            const startX = Math.random() * (this.canvas.width - 100);
-            const startY = Math.random() * (this.canvas.height - 100);
-
             const speciesData = SPECIES_DATA[fishData.species];
             const img = this.loadedImages[fishData.species]
+
+            const fishW = img.width * speciesData.scale;
+            const fishH = img.height * speciesData.scale;
+            const maxX = this.canvas.width - fishW;
+            const maxY = this.canvas.height - fishH;
+
+            const startX = Math.random() * Math.max(0, maxX);
+            const startY = Math.random() * Math.max(0, maxY);
 
             this.fishObjs.push(new Fish(startX, startY, fishData, speciesData, img));
         }
     }
 
-    start() {
-        this.loadImages();
+    async start() {
+        await this.loadImages();
         this.initFish();
 
         if (!this.animationId) {

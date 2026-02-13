@@ -10,6 +10,8 @@ export class Fish {
         const speed = Math.random() * (speciesData.maxSpeed - speciesData.minSpeed) + speciesData.minSpeed;
         this.speedX = speed * (Math.random() < 0.5 ? -1 : 1);
         this.speedY = (Math.random() * 1.5) - 0.75;
+
+        this.maxRotation = speciesData.maxRotation;
     }
 
     update(canvasWidth, canvasHeight) {
@@ -25,8 +27,33 @@ export class Fish {
         }
     }
 
+    centerCanvas(ctx) {
+        const centerX = this.x + this.width / 2;
+        const centerY = this.y + this.height / 2; 
+        ctx.translate(centerX, centerY);
+    }
+
+    applyTransform(ctx) {
+        let angle = Math.atan2(this.speedY, Math.abs(this.speedX));
+        angle = Math.max(-this.maxRotation, Math.min(this.maxRotation, angle));
+
+        if (this.speedX < 0) {
+            ctx.scale(-1, 1);
+            ctx.rotate(-angle);
+        }
+        else {
+            ctx.rotate(angle);
+        }
+    }
+
     draw(ctx) {
         if (!this.image) return;
-        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+        ctx.save();
+
+        this.centerCanvas(ctx);
+        this.applyTransform(ctx);
+        ctx.drawImage(this.image, -this.width / 2, -this.height / 2, this.width, this.height);  // draw at new center
+
+        ctx.restore();
     }
 }

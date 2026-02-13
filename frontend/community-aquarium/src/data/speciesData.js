@@ -1,30 +1,35 @@
-// You'll replace these paths with your real images later
+import guppySprite from '../assets/images/fish/guppy.png';
 import tetraSprite from '../assets/images/fish/neontetra.gif';
 import angelfishSprite from '../assets/images/fish/angelfish.gif';
+import bettaSprite from '../assets/images/fish/betta.png';
 
 export const SPECIES_DATA = {
     'Guppy': {
-        sprite: tetraSprite,
-        scale: .3,
+        sprite: guppySprite,
+        scale: .2,
         minSpeed: 2.0,
         maxSpeed: 4.0,
+        maxRotation: Math.PI / 3,
     },
     'Tetra': {
         sprite: tetraSprite,
         scale: .3,
         minSpeed: 1.0,
         maxSpeed: 2.5,
+        maxRotation: Math.PI / 3,
     },
     'Angelfish': {
         sprite: angelfishSprite,
         scale: .8,
         minSpeed: 0.5,
         maxSpeed: 1.5,
+        maxRotation: Math.PI / 12,
     },
     'Betta': {
-        sprite: angelfishSprite,
-        scale: .8,
+        sprite: bettaSprite,
+        scale: .4,
         minSpeed: 0.8,
         maxSpeed: 1.8,
+        maxRotation: Math.PI / 4,
     },
 };
