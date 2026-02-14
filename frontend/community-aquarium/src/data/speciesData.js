@@ -23,13 +23,13 @@ export const SPECIES_DATA = {
         scale: .8,
         minSpeed: 0.5,
         maxSpeed: 1.5,
-        maxRotation: Math.PI / 12,
+        maxRotation: Math.PI / 20,
     },
     'Betta': {
         sprite: bettaSprite,
         scale: .4,
         minSpeed: 0.8,
         maxSpeed: 1.8,
-        maxRotation: Math.PI / 4,
+        maxRotation: Math.PI / 12,
     },
 };

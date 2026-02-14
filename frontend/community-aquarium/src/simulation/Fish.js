@@ -35,15 +35,12 @@ export class Fish {
 
     applyTransform(ctx) {
         let angle = Math.atan2(this.speedY, Math.abs(this.speedX));
-        angle = Math.max(-this.maxRotation, Math.min(this.maxRotation, angle));
+        let clampedAngle = Math.max(-this.maxRotation, Math.min(this.maxRotation, angle));
 
         if (this.speedX < 0) {
             ctx.scale(-1, 1);
-            ctx.rotate(-angle);
         }
-        else {
-            ctx.rotate(angle);
-        }
+        ctx.rotate(clampedAngle);
     }
 
     draw(ctx) {
