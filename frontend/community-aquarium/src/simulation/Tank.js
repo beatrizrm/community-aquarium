@@ -1,5 +1,6 @@
 import { Fish } from "./Fish";
 import { SPECIES_DATA } from "../data/speciesData";
+import { VARIANT_DATA } from "../data/variantData";
 import { OWNED_FISH_DATA } from "../data/fishData";
 
 export class Tank {
@@ -16,10 +17,10 @@ export class Tank {
     async loadImages() {    // returns a promise
         const promises = [];
 
-        for (const speciesName in SPECIES_DATA) {
+        for (const variantName in VARIANT_DATA) {
             const fishImg = new Image();
-            fishImg.src = SPECIES_DATA[speciesName].sprite;
-            this.loadedImages[speciesName] = fishImg;
+            fishImg.src = VARIANT_DATA[variantName].sprite;
+            this.loadedImages[variantName] = fishImg;
 
             promises.push(new Promise(resolve => fishImg.addEventListener("load", resolve)));
         }
@@ -29,18 +30,19 @@ export class Tank {
 
     initFish() {
         for (const fishData of OWNED_FISH_DATA) {
-            const speciesData = SPECIES_DATA[fishData.species];
-            const img = this.loadedImages[fishData.species]
+            const variantData = VARIANT_DATA[fishData.variant];
+            const speciesData = SPECIES_DATA[variantData.species];
+            const img = this.loadedImages[fishData.variant]
 
-            const fishW = img.width * speciesData.scale;
-            const fishH = img.height * speciesData.scale;
+            const fishW = img.width * variantData.scale;
+            const fishH = img.height * variantData.scale;
             const maxX = this.canvas.width - fishW;
             const maxY = this.canvas.height - fishH;
 
             const startX = Math.random() * Math.max(0, maxX);
             const startY = Math.random() * Math.max(0, maxY);
 
-            this.fishObjs.push(new Fish(startX, startY, fishData, speciesData, img));
+            this.fishObjs.push(new Fish(startX, startY, fishData, speciesData, variantData.scale, img));
         }
     }
 

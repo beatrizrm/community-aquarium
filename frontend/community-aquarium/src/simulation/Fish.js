@@ -1,11 +1,11 @@
 export class Fish {
-    constructor(startX, startY, fishData, speciesData, image) {
+    constructor(startX, startY, fishData, speciesData, scale, image) {
         this.id = fishData.id;
         this.x = startX;
         this.y = startY;
         this.image = image;
-        this.width = image.width * speciesData.scale;
-        this.height = image.height * speciesData.scale;
+        this.width = image.width * scale;
+        this.height = image.height * scale;
 
         const speed = Math.random() * (speciesData.maxSpeed - speciesData.minSpeed) + speciesData.minSpeed;
         this.speedX = speed * (Math.random() < 0.5 ? -1 : 1);
