@@ -8,24 +8,20 @@ export const VARIANT_DATA = {
         name: "Red Dragon Guppy",
         species: "guppy",
         sprite: guppySprite,
-        scale: .2,
     },
     "neon_tetra": {
         name: "Neon Tetra",
         species: "tetra",
         sprite: tetraSprite,
-        scale: .3,
     },
     "zebra_angelfish": {
         name: "Zebra Angelfish",
         species: "angelfish",
         sprite: angelfishSprite,
-        scale: .8,
     },
     "halfmoon_betta": {
         name: "Halfmoon Betta",
         species: "betta",
         sprite: bettaSprite,
-        scale: .4,
     }
 };

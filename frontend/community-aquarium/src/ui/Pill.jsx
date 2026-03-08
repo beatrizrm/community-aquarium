@@ -1,7 +1,12 @@
 const Pill = props => {
-    const isClickable = !!props.onClick;
+    const isClickable = !!props.onClick || props.type === "submit"
 
-    const Element = isClickable ? 'button' : 'div';
+    const Element = isClickable ? "button" : "div";
+
+    let buttonType = undefined; 
+    if (Element === "button") {
+        buttonType = props.type || "button";
+    }
 
     const base = "inline-flex items-center justify-center rounded-full text-md px-3 py-1 select-none font-elmerp";
 
@@ -14,7 +19,7 @@ const Pill = props => {
         : `text-white ${props.className}`;
 
     return (
-        <Element onClick={props.onClick} className={`${base} ${style} ${colors}`}>
+        <Element onClick={props.onClick} type={buttonType} className={`${base} ${style} ${colors}`}>
             {props.children}
         </Element>
     );

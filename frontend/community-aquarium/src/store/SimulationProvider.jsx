@@ -3,16 +3,21 @@ import { useState, useEffect } from "react";
 import { OWNED_FISH_DATA } from '../data/fishData';
 
 const SimulationProvider = props => {
+    const [coins, setCoins] = useState(0);
     const [ownedFish, setOwnedFish] = useState([]);
 
     useEffect(() => {
         setOwnedFish(OWNED_FISH_DATA);
     }, []);
 
-    const buyFishHandler = fish => {
-        setOwnedFish(prevFish =>
-            [...prevFish, {...fish, id: Math.random().toString()}]
-        );
+    const buyFishHandler = (fish, price) => {
+        if (coins >= price) {
+            setCoins(prevCoins => prevCoins - price);
+
+            setOwnedFish(prevFish =>
+                [...prevFish, {...fish, id: Math.random().toString()}]
+            );
+        }
     }
 
     const sellFishHandler = fish => {
@@ -22,6 +27,7 @@ const SimulationProvider = props => {
     }
 
     const simulationContext = {
+        coins: coins,
         ownedFish: ownedFish,
         buyFish: buyFishHandler,
         sellFish: sellFishHandler

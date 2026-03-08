@@ -30,20 +30,24 @@ export class Tank {
 
     initFish() {
         for (const fishData of OWNED_FISH_DATA) {
-            const variantData = VARIANT_DATA[fishData.variant];
-            const speciesData = SPECIES_DATA[variantData.species];
-            const img = this.loadedImages[fishData.variant]
-
-            const fishW = img.width * variantData.scale;
-            const fishH = img.height * variantData.scale;
-            const maxX = this.canvas.width - fishW;
-            const maxY = this.canvas.height - fishH;
-
-            const startX = Math.random() * Math.max(0, maxX);
-            const startY = Math.random() * Math.max(0, maxY);
-
-            this.fishObjs.push(new Fish(startX, startY, fishData, speciesData, variantData.scale, img));
+            this.addFish(fishData);
         }
+    }
+
+    addFish(fishData) {
+        const variantData = VARIANT_DATA[fishData.variant];
+        const speciesData = SPECIES_DATA[variantData.species];
+        const img = this.loadedImages[fishData.variant]
+
+        const fishW = img.width * speciesData.scale;
+        const fishH = img.height * speciesData.scale;
+        const maxX = this.canvas.width - fishW;
+        const maxY = this.canvas.height - fishH;
+
+        const startX = Math.random() * Math.max(0, maxX);
+        const startY = Math.random() * Math.max(0, maxY);
+
+        this.fishObjs.push(new Fish(startX, startY, fishData, speciesData, img));
     }
 
     async start() {

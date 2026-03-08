@@ -1,11 +1,11 @@
 import ClickableGridItem from "../../../ui/ClickableGridItem";
 
-const ShopGridItem = props => {
+const ShopGridItem = ({ name, price, image, onClick }) => {
     return (
-        <ClickableGridItem>
+        <ClickableGridItem image={image} onClick={onClick}>
             <div className="flex justify-between items-center text-md">
-                <span>{props.name}</span>
-                <span>🟡{props.price}</span>
+                <span>{name}</span>
+                <span>🟡{price}</span>
             </div>
         </ClickableGridItem>
     )
