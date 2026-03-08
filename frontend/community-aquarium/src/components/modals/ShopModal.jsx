@@ -6,7 +6,7 @@ import { SHOP_DATA } from "../../data/shopData";
 import { VARIANT_DATA } from "../../data/variantData";
 import SimulationContext from "../../store/simulation-context";
 
-const ShopModal = props => {
+const ShopModal = ({ onClose, onCompleteAction }) => {
     const simCtx = useContext(SimulationContext);
     const nameInputRef = useRef();
 
@@ -20,7 +20,7 @@ const ShopModal = props => {
         event.preventDefault();
 
         if (simCtx.coins >= selectedFish.price) {
-            const fishName = nameInputRef.current.value;
+            const fishName = nameInputRef.current.value.trim();
             const newFish = {
                 name: fishName,
                 variant: selectedFish.variant,
@@ -28,8 +28,11 @@ const ShopModal = props => {
                 age: 0,
             }
             simCtx.buyFish(newFish, selectedFish.price);
+
+            onCompleteAction("Fish purchased!", true);
         }
         else {
+            onCompleteAction("Not enough coins!", false);
         }
     }
     
@@ -44,7 +47,7 @@ const ShopModal = props => {
     );
 
     return (
-        <Modal title="Shop" onClose={props.onClose} footer={buyDrawer}>
+        <Modal title="Shop" onClose={onClose} footer={buyDrawer}>
             <div className="flex gap-3 justify-center mb-4">
                 <Pill className="bg-blue-400">Fish</Pill>
                 <Pill className="bg-orange-400">Decor</Pill>
