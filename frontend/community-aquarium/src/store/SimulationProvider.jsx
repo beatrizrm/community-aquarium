@@ -10,6 +10,14 @@ const SimulationProvider = props => {
         setOwnedFish(OWNED_FISH_DATA);
     }, []);
 
+    useEffect(() => {
+        const coinInterval = setInterval(() => {
+            setCoins(prevCoins => prevCoins + 10);
+        }, 5000);
+
+        return () => clearInterval(coinInterval);
+    }, [])
+
     const buyFishHandler = (fish, price) => {
         if (coins >= price) {
             setCoins(prevCoins => prevCoins - price);
