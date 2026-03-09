@@ -8,7 +8,7 @@ const TopBar = () => {
     return (
         <div className="pointer-events-auto flex justify-between w-full z-10 p-3">
             <Pill>Login</Pill>
-            <Pill>{simCtx.coins}</Pill>
+            <Pill>🟡 {Math.floor(simCtx.coins)}</Pill>
         </div>
     );
 };
