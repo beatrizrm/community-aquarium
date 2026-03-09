@@ -1,7 +1,6 @@
 import { Fish } from "./Fish";
 import { SPECIES_DATA } from "../data/speciesData";
 import { VARIANT_DATA } from "../data/variantData";
-import { OWNED_FISH_DATA } from "../data/fishData";
 
 export class Tank {
     constructor(canvas) {
@@ -28,12 +27,6 @@ export class Tank {
         await Promise.all(promises);    // to determine fish dimensions
     }
 
-    initFish() {
-        for (const fishData of OWNED_FISH_DATA) {
-            this.addFish(fishData);
-        }
-    }
-
     addFish(fishData) {
         const variantData = VARIANT_DATA[fishData.variant];
         const speciesData = SPECIES_DATA[variantData.species];
@@ -52,7 +45,6 @@ export class Tank {
 
     async start() {
         await this.loadImages();
-        this.initFish();
 
         if (!this.animationId) {
             this.loop();

@@ -12,9 +12,11 @@ const TankContainer = () => {
     useEffect(() => {
         const canvas = canvasRef.current;
         const tankInstance = new Tank(canvas);
-        tankInstance.start();
 
-        setTank(tankInstance);
+        const initTank = async () => {
+            await tankInstance.start();
+            setTank(tankInstance);
+        }
 
         const resizeCanvas = () => {
             const container = containerRef.current;
@@ -23,7 +25,8 @@ const TankContainer = () => {
             canvas.width = container.clientWidth;
             canvas.height = container.clientHeight;
         }
-        
+
+        initTank();
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
@@ -36,9 +39,13 @@ const TankContainer = () => {
     useEffect(() => {
         if (!tank) return;  // wait until tank has been created
 
-        if (simCtx.ownedFish.length > tank.fishObjs.length) {
-            const newFish = simCtx.ownedFish[simCtx.ownedFish.length - 1];
-            tank.addFish(newFish);
+        const difference = simCtx.ownedFish.length - tank.fishObjs.length;
+
+        if (difference > 0) {
+            const fishToAdd = simCtx.ownedFish.slice(-difference);    // get the fish at the end of the arr
+            for (const fish of fishToAdd) {
+                tank.addFish(fish);
+            }
         }
     }, [simCtx.ownedFish, tank]);
 
